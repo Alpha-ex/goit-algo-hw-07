@@ -1,3 +1,5 @@
+# Не впевнений що все гаразд
+# (відповідно до вимог завдання, але наче працює :)
 import re
 from datetime import datetime, timedelta
 import sys
