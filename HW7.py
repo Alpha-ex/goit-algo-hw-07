@@ -1,5 +1,19 @@
 # Не впевнений що все гаразд
 # (відповідно до вимог завдання, але наче працює :)
+
+# В даному коді використовуються наступні команди:
+
+# add [ім'я] [телефон]: Додати новий контакт з іменем та телефонним номером.
+# delete [ім'я] : Видалити контакт за іменем.
+# change [ім'я] [новий телефон]: Змінити телефонний номер для вказаного контакту.
+# phone [ім'я]: Показати телефонний номер для вказаного контакту.
+# all: Показати всі контакти в адресній книзі.
+# add-birthday [ім'я] [дата народження]: Додати дату народження для вказаного контакту.
+# show-birthday [ім'я]: Показати дату народження для вказаного контакту.
+# birthdays: Показати дні народження, які відбудуться протягом наступного тижня.
+# hello: Отримати вітання від бота.
+# close або exit: Закрити програму.
+
 import re
 from datetime import datetime, timedelta
 import sys
@@ -61,6 +75,13 @@ class AddressBook:
     def add_record(self, record):
         self.data[record.name.value] = record
 
+    def delete_record(self, name):
+        if name in self.data:
+            del self.data[name]
+            print(f"Contact {name} deleted successfully.")
+        else:
+            print("Contact not found.")
+
     def remove_record(self, name):
         del self.data[name]
 
@@ -98,6 +119,12 @@ class AddressBook:
                 print(f"Contact {name} with phone {phone} added successfully.")
             except ValueError as e:
                 print(f"Error: {e}")
+        elif command_parts[0] == "delete":
+            if len(command_parts) != 2:
+                print("Invalid command format. Usage: delete [ім'я]")
+                return
+            name = command_parts[1]
+            self.delete_record(name)
         elif command_parts[0] == "change":
             if len(command_parts) != 3:
                 print("Invalid command format. Usage: change [ім'я] [новий телефон]")
