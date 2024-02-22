@@ -51,9 +51,6 @@ class Record:
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
 
-    def remove_phone(self, phone):
-        self.phones = [p for p in self.phones if str(p) != phone]
-
     def edit_phone(self, old_phone, new_phone):
         for p in self.phones:
             if str(p) == old_phone:
@@ -81,9 +78,6 @@ class AddressBook:
             print(f"Contact {name} deleted successfully.")
         else:
             print("Contact not found.")
-
-    def remove_record(self, name):
-        del self.data[name]
 
     def lookup_record(self, name):
         return self.data.get(name)
